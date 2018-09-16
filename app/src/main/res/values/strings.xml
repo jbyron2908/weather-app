@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="weather_temperature">Temperature</string>
+    <string name="weather_temperature_current">Current</string>
+    <string name="weather_temperature_max">Max</string>
+    <string name="weather_temperature_min">Min</string>
+    <string name="weather_details">Details</string>
+    <string name="weather_wind">Wind</string>
+    <string name="weather_air_pressure">Air Pressure</string>
+    <string name="weather_humidity">Humidity</string>
+    <string name="weather_visibility">Visibility</string>
+
+    <string name="temperature">%s°</string>
+    <string name="wind">%s mph %s</string>
+    <string name="air_pressure">%s mbar</string>
+    <string name="humidity">%s%%</string>
+    <string name="visibility">%s miles</string>
+    <string name="network_error">Network Error\nPress here to retry</string>
 </resources>
