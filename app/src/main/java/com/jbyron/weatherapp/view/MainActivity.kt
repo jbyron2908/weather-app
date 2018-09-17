@@ -30,7 +30,7 @@ class MainActivity : BaseActivity() {
 
     @Inject
     lateinit var viewModel: WeatherViewModel
-    lateinit var currentOption: String
+    private lateinit var currentOption: String
 
     init {
         App.component.inject(this)
@@ -44,7 +44,7 @@ class MainActivity : BaseActivity() {
 
         bindViewEvents()
 
-        loadData(optionsHashMap[currentOption]!!)
+        loadData(currentOption)
     }
 
     override fun bindViewModel() {
@@ -83,7 +83,7 @@ class MainActivity : BaseActivity() {
     private fun setupSpinner() {
         val optionArrayList: ArrayList<String> = ArrayList(optionsHashMap.keys)
         optionArrayList.sort()
-        currentOption = optionArrayList[0]
+        currentOption = optionsHashMap[optionArrayList[0]]!!
 
         msOptions.setItems(optionArrayList)
         msOptions.setOnItemSelectedListener { _, _, _, item ->
@@ -96,7 +96,11 @@ class MainActivity : BaseActivity() {
         disposables.addAll(
                 RxView.clicks(tvError)
                         .throttleFirst(500, TimeUnit.MILLISECONDS)
-                        .subscribe { loadData(optionsHashMap[currentOption]!!) }
+                        .subscribe({
+                            loadData(currentOption)
+                        }, {
+                            Timber.e(it, "Error getting weather data")
+                        })
         )
     }
 
